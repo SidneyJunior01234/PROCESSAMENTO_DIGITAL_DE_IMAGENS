@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Jose da Silva">
-<title>DCA0445: Processamento Digital de Imagens</title>
+<meta name="author" content="Sidney Alves dos Santos Junior">
+<title>Filtragem de forma com morfologia matemática</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -433,215 +433,208 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_dca0445_processamento_digital_de_imagens">1. DCA0445: Processamento Digital de Imagens</a></li>
-<li><a href="#_objetivo_do_repositório">2. Objetivo do Repositório</a></li>
-<li><a href="#_ambiente_de_desenvolvimento">3. Ambiente de Desenvolvimento</a>
+<li><a href="#_filtragem_de_forma_com_morfologia_matemática">1. Filtragem de forma com morfologia matemática</a>
 <ul class="sectlevel2">
-<li><a href="#_instalação_do_python">3.1. Instalação do Python</a></li>
-<li><a href="#_instalação_do_opencv">3.2. Instalação do OpenCV</a></li>
-<li><a href="#_instalação_do_numpy">3.3. Instalação do Numpy</a></li>
-<li><a href="#_webcam">3.4. WebCam</a></li>
+<li><a href="#_reconhecimento_de_caracteres_usando_operações_morfológicas">1.1. Reconhecimento de Caracteres Usando Operações Morfológicas</a></li>
 </ul>
 </li>
-<li><a href="#_atividades_práticas">4. Atividades Práticas</a>
-<ul class="sectlevel2">
-<li><a href="#_unidade_1">4.1. Unidade 1</a></li>
-<li><a href="#_unidade_2">4.2. Unidade 2</a></li>
-<li><a href="#_unidade_3">4.3. Unidade 3</a></li>
-</ul>
-</li>
-<li><a href="#_referências">5. Referências</a></li>
-<li><a href="#_autor">6. Autor</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_dca0445_processamento_digital_de_imagens">1. DCA0445: Processamento Digital de Imagens</h2>
+<h2 id="_filtragem_de_forma_com_morfologia_matemática">1. Filtragem de forma com morfologia matemática</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta disciplina, exploramos as técnicas e algoritmos utilizados para manipular e analisar imagens digitais. Aprendemos a aplicar conceitos de processamento de sinais para melhorar a qualidade de imagens, extrair informações relevantes e desenvolver aplicações.</p>
+<p>Para essa prática em questão, iremos utilizar das operações morfológicas que atuam sobre a forma de objetos na imagem, modificando a propriedade dos morfologia conforme propriedades de uma vizinhança selecionada. Assim como na operação de convolução a máscara utilizada desempenha um papel fundamental no resultado do processo, na morfologia, o efeito da filtragem é controlada por um conjunto denominado elemento estruturante.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_objetivo_do_repositório">2. Objetivo do Repositório</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Este repositório tem como objetivo apresentar os projetos e relatórios desenvolvidos durante a disciplina de Processamento Digital de Imagens. Aqui, você encontrará uma compilação dos trabalhos realizados, demonstrando a aplicação prática dos conhecimentos adquiridos.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ambiente_de_desenvolvimento">3. Ambiente de Desenvolvimento</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As atividades práticas foram desenvolvidas em ambiente Linux com distribuição Ubuntu, foi utilizada a linguagem de programação Python juntamente com a biblioteca do OpenCV.</p>
+<p>O exercício está disponível em <a href="https://agostinhobritojr.github.io/tutorial/pdi/morfologia.html">Capítulo 24. Filtragem de forma com morfologia matemática</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_instalação_do_python">3.1. Instalação do Python</h3>
+<h3 id="_reconhecimento_de_caracteres_usando_operações_morfológicas">1.1. Reconhecimento de Caracteres Usando Operações Morfológicas</h3>
 <div class="paragraph">
-<p>Para instalá-lo, utilize o seguinte comando no terminal:</p>
+<p>O programa em questão conta com uma sequência onde temos o elemento estruturante &#8594; aplicação de erosão &#8594; aplicação de dilatação &#8594; abertura &#8594; fechamento, sendo observada no trecho de código a seguir.</p>
 </div>
 <div class="listingblock">
-<div class="title">Listagem 1. Instalação do Python</div>
+<div class="title">Listagem 1. Estrutura do Código</div>
 <div class="content">
-<pre>sudo apt-get install python3</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_instalação_do_opencv">3.2. Instalação do OpenCV</h3>
-<div class="paragraph">
-<p>Biblioteca de visão computacional. Instale usando pip:</p>
-</div>
-<div class="listingblock">
-<div class="title">Listagem 2. Instalação do OpenCV</div>
-<div class="content">
-<pre>pip install opencv-python</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>ou</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>pip3 install opencv-python</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_instalação_do_numpy">3.3. Instalação do Numpy</h3>
-<div class="paragraph">
-<p>Biblioteca para computação numérica. Instale usando pip:</p>
-</div>
-<div class="listingblock">
-<div class="title">Listagem 3. Instalação do Numpy</div>
-<div class="content">
-<pre>pip install numpy</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>ou</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>pip3 install numpy</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_webcam">3.4. WebCam</h3>
-<div class="paragraph">
-<p>Recomenda-se possuir WebCam para realizar algumas atividades e caso não possua pode utilizar a câmera do Smartphone para substituir a WebCam.</p>
-</div>
-<div class="paragraph">
-<p>Estou utilizando o <a href="https://www.dev47apps.com/">DroidCam</a> que é uma aplicação que permite utilizar a câmera do Smartphone via USB ou via Wifi caso o computador e o aparelho estejam na mesma rede.</p>
-</div>
-<div class="paragraph">
-<p>O uso dessa ferramenta está sendo feita no Windows, pois o subsistema não identifica a câmera.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_atividades_práticas">4. Atividades Práticas</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As atividades práticas realizadas, abordam o conteúdo ensinado em sala e auxiliam na compreensão do conteúdo, uma vez que deve-se conhecer do assunto para realizar as práticas.</p>
-</div>
-<div class="sect2">
-<h3 id="_unidade_1">4.1. Unidade 1</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica01.html">Manipulando pixels em uma imagem</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica02.html">Serialização de dados em ponto flutuante via FileStorage</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica03.html">Decomposição de imagens em planos de bits</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica04.html">Preenchendo regiões</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica05.html">Manipulação de histogramas</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica06.html">Filtragem no domínio espacial I - Convolução</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica07.html">Filtragem no domínio espacial II - TiltShift</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_unidade_2">4.2. Unidade 2</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica13.html">Filtragem no Domínio da Frequência</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica14.html">Detecção de bordas com o algoritmo de Canny</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica15.html">Quantização vetorial com k-means</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_unidade_3">4.3. Unidade 3</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica16.html">Extração de contornos</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica19.html">Extração de características: Momentos de Hu para contornos</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica20.html">Reconhecimento de Caracteres Usando Operações Morfológicas</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_referências">5. Referências</h2>
-<div class="sectionbody">
+<pre class="rouge highlight"><code data-lang="python"><span class="c1"># Elemento estruturante
+</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_RECT</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
+<span class="c1"># Erosão
+</span><span class="n">erosion</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">erode</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Dilatação
+</span><span class="n">dilation</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">dilate</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Abertura
+</span><span class="n">opening</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">morphologyEx</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Fechamento
+</span><span class="n">closing</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">morphologyEx</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1"># Abertura -&gt; Fechamento
+</span><span class="n">opening_closing</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">morphologyEx</span><span class="p">(</span><span class="n">opening</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_CLOSE</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span></code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_autor">6. Autor</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Sidney Alves dos Santos Junior - Engenharia de Computação</p>
+<p>Com isso é possível aplicar e verificar o resultado, que no caso é observado no ponto de erosão.</p>
 </div>
 <div class="paragraph">
-<p>Email: <a href="mailto:sidneyjunior.ect@gmail.com">sidneyjunior.ect@gmail.com</a></p>
+<div class="title">Imagem Original</div>
+<p><span class="image"><img src="../figs/visor.png" alt="imagem 01"></span></p>
 </div>
 <div class="paragraph">
-<p>Github: <a href="https://github.com/SidneyJunior01234" class="bare">https://github.com/SidneyJunior01234</a></p>
+<div class="title">Erossão</div>
+<p><span class="image"><img src="../figs/resultado_morfologia.png" alt="imagem 02"></span></p>
+</div>
+<div class="paragraph">
+<p>Para um leitor, é acitável uma vez que é possível identificar os dígitos.</p>
+</div>
+<div class="paragraph">
+<p>Script disponível em: <a href="../scripts/pratica20.py">Reconhecimento de Caracteres Usando Operações Morfológicas</a></p>
+</div>
+<div class="paragraph">
+<p>Para executar o programa utilize o comando:
+.Exemplo de comando de execução</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>python3 nome_arquivo.py caminho_imagem</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2025-01-28 22:49:41 -0300
+Última atualização 2025-01-28 22:46:58 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">

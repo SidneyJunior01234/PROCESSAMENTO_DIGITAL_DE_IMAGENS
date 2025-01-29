@@ -5,8 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Jose da Silva">
-<title>DCA0445: Processamento Digital de Imagens</title>
+<meta name="author" content="Sidney Alves dos Santos Junior">
+<title>Extração de contornos</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,209 +439,118 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Sumário</div>
 <ul class="sectlevel1">
-<li><a href="#_dca0445_processamento_digital_de_imagens">1. DCA0445: Processamento Digital de Imagens</a></li>
-<li><a href="#_objetivo_do_repositório">2. Objetivo do Repositório</a></li>
-<li><a href="#_ambiente_de_desenvolvimento">3. Ambiente de Desenvolvimento</a>
+<li><a href="#_extração_de_contornos">1. Extração de contornos</a>
 <ul class="sectlevel2">
-<li><a href="#_instalação_do_python">3.1. Instalação do Python</a></li>
-<li><a href="#_instalação_do_opencv">3.2. Instalação do OpenCV</a></li>
-<li><a href="#_instalação_do_numpy">3.3. Instalação do Numpy</a></li>
-<li><a href="#_webcam">3.4. WebCam</a></li>
+<li><a href="#_extração_de_contornos_cvchain_approx_none">1.1. Extração de contornos - cv::CHAIN_APPROX_NONE</a></li>
+<li><a href="#_extração_de_contornos_cvchain_approx_simple">1.2. Extração de contornos - cv::CHAIN_APPROX_SIMPLE</a></li>
 </ul>
 </li>
-<li><a href="#_atividades_práticas">4. Atividades Práticas</a>
-<ul class="sectlevel2">
-<li><a href="#_unidade_1">4.1. Unidade 1</a></li>
-<li><a href="#_unidade_2">4.2. Unidade 2</a></li>
-<li><a href="#_unidade_3">4.3. Unidade 3</a></li>
-</ul>
-</li>
-<li><a href="#_referências">5. Referências</a></li>
-<li><a href="#_autor">6. Autor</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_dca0445_processamento_digital_de_imagens">1. DCA0445: Processamento Digital de Imagens</h2>
+<h2 id="_extração_de_contornos">1. Extração de contornos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nesta disciplina, exploramos as técnicas e algoritmos utilizados para manipular e analisar imagens digitais. Aprendemos a aplicar conceitos de processamento de sinais para melhorar a qualidade de imagens, extrair informações relevantes e desenvolver aplicações.</p>
+<p>A extração de contornos é uma técnica utilizada em processamento de imagens e classificação de padrões que permite analisar a forma de um objeto em uma imagem.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_objetivo_do_repositório">2. Objetivo do Repositório</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Este repositório tem como objetivo apresentar os projetos e relatórios desenvolvidos durante a disciplina de Processamento Digital de Imagens. Aqui, você encontrará uma compilação dos trabalhos realizados, demonstrando a aplicação prática dos conhecimentos adquiridos.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_ambiente_de_desenvolvimento">3. Ambiente de Desenvolvimento</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As atividades práticas foram desenvolvidas em ambiente Linux com distribuição Ubuntu, foi utilizada a linguagem de programação Python juntamente com a biblioteca do OpenCV.</p>
+<p>O exercício está disponível em <a href="https://agostinhobritojr.github.io/tutorial/pdi/contornos.html">Capítulo 21. Extração de contornos</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="_instalação_do_python">3.1. Instalação do Python</h3>
+<h3 id="_extração_de_contornos_cvchain_approx_none">1.1. Extração de contornos - cv::CHAIN_APPROX_NONE</h3>
 <div class="paragraph">
-<p>Para instalá-lo, utilize o seguinte comando no terminal:</p>
+<p>Utilizando do programa contornos.cpp e o adaptando para a linguagem python, aplicamos a extração na imagem abaixo:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../figs/formas.png" alt="Imagem1 01" width="400" height="400">
+</div>
+<div class="title">Figura 1. Formas</div>
+</div>
+<div class="paragraph">
+<p>E o resultado para tal aplicação é um total de 746 pontos nos contornos, observados na cor azul e a imagem salva em SVG.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../figs/contornos.png" alt="Imagem2 01" width="400" height="400">
+</div>
+<div class="title">Figura 2. Contornos</div>
+</div>
+<div class="paragraph">
+<p><a href="../imagens/contornos.svg">contornos.svg</a></p>
+</div>
+<div class="paragraph">
+<p>Script disponível em: <a href="../scripts/pratica16.py">Extração de contornos - cv::CHAIN_APPROX_NONE</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Listagem 1. Instalação do Python</div>
+<div class="title">Listagem 1. Exemplo de comando de execução</div>
 <div class="content">
-<pre>sudo apt-get install python3</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_instalação_do_opencv">3.2. Instalação do OpenCV</h3>
-<div class="paragraph">
-<p>Biblioteca de visão computacional. Instale usando pip:</p>
-</div>
-<div class="listingblock">
-<div class="title">Listagem 2. Instalação do OpenCV</div>
-<div class="content">
-<pre>pip install opencv-python</pre>
+<pre>python3 nome_arquivo.py caminho_imagem</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>ou</p>
 </div>
 <div class="listingblock">
+<div class="title">Listagem 2. Exemplo de comando de execução</div>
 <div class="content">
-<pre>pip3 install opencv-python</pre>
+<pre>python nome_arquivo.py caminho_imagem</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_instalação_do_numpy">3.3. Instalação do Numpy</h3>
+<h3 id="_extração_de_contornos_cvchain_approx_simple">1.2. Extração de contornos - cv::CHAIN_APPROX_SIMPLE</h3>
 <div class="paragraph">
-<p>Biblioteca para computação numérica. Instale usando pip:</p>
+<p>Utilizando do programa contornos.cpp e o adaptando para a linguagem python, substituinos cv::CHAIN_APPROX_NONE por cv::CHAIN_APPROX_SIMPLE na função findContours(). Ao utilizar cv::CHAIN_APPROX_SIMPLE, o OpenCV comprime o contorno, armazenando apenas os pontos de inflexão (vértices). Segmentos horizontais, verticais e diagonais são aproximados por uma linha reta, conectando apenas os pontos finais.</p>
+</div>
+<div class="paragraph">
+<p>Aplicando o programa modificado.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../figs/formas.png" alt="Imagem3 01" width="400" height="400">
+</div>
+<div class="title">Figura 3. Formas</div>
+</div>
+<div class="paragraph">
+<p>E o resultado para tal aplicação é um total de 10 pontos nos contornos, observados na cor azul e a imagem salva em SVG.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../figs/contornos2.png" alt="Imagem4 01" width="400" height="400">
+</div>
+<div class="title">Figura 4. Contornos2</div>
+</div>
+<div class="paragraph">
+<p><a href="../imagens/contornos2.svg">contornos2.svg</a></p>
+</div>
+<div class="paragraph">
+<p>Script disponível em: <a href="../scripts/pratica17.py">Extração de contornos - cv::CHAIN_APPROX_NONE</a></p>
 </div>
 <div class="listingblock">
-<div class="title">Listagem 3. Instalação do Numpy</div>
+<div class="title">Listagem 3. Exemplo de comando de execução</div>
 <div class="content">
-<pre>pip install numpy</pre>
+<pre>python3 nome_arquivo.py caminho_imagem</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>ou</p>
 </div>
 <div class="listingblock">
+<div class="title">Listagem 4. Exemplo de comando de execução</div>
 <div class="content">
-<pre>pip3 install numpy</pre>
+<pre>python nome_arquivo.py caminho_imagem</pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_webcam">3.4. WebCam</h3>
-<div class="paragraph">
-<p>Recomenda-se possuir WebCam para realizar algumas atividades e caso não possua pode utilizar a câmera do Smartphone para substituir a WebCam.</p>
-</div>
-<div class="paragraph">
-<p>Estou utilizando o <a href="https://www.dev47apps.com/">DroidCam</a> que é uma aplicação que permite utilizar a câmera do Smartphone via USB ou via Wifi caso o computador e o aparelho estejam na mesma rede.</p>
-</div>
-<div class="paragraph">
-<p>O uso dessa ferramenta está sendo feita no Windows, pois o subsistema não identifica a câmera.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_atividades_práticas">4. Atividades Práticas</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As atividades práticas realizadas, abordam o conteúdo ensinado em sala e auxiliam na compreensão do conteúdo, uma vez que deve-se conhecer do assunto para realizar as práticas.</p>
-</div>
-<div class="sect2">
-<h3 id="_unidade_1">4.1. Unidade 1</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica01.html">Manipulando pixels em uma imagem</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica02.html">Serialização de dados em ponto flutuante via FileStorage</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica03.html">Decomposição de imagens em planos de bits</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica04.html">Preenchendo regiões</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica05.html">Manipulação de histogramas</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica06.html">Filtragem no domínio espacial I - Convolução</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica07.html">Filtragem no domínio espacial II - TiltShift</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_unidade_2">4.2. Unidade 2</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica13.html">Filtragem no Domínio da Frequência</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica14.html">Detecção de bordas com o algoritmo de Canny</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica15.html">Quantização vetorial com k-means</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_unidade_3">4.3. Unidade 3</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="relatorios/pratica16.html">Extração de contornos</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica19.html">Extração de características: Momentos de Hu para contornos</a></p>
-</li>
-<li>
-<p><a href="relatorios/pratica20.html">Reconhecimento de Caracteres Usando Operações Morfológicas</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_referências">5. Referências</h2>
-<div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="_autor">6. Autor</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Sidney Alves dos Santos Junior - Engenharia de Computação</p>
-</div>
-<div class="paragraph">
-<p>Email: <a href="mailto:sidneyjunior.ect@gmail.com">sidneyjunior.ect@gmail.com</a></p>
-</div>
-<div class="paragraph">
-<p>Github: <a href="https://github.com/SidneyJunior01234" class="bare">https://github.com/SidneyJunior01234</a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Última atualização 2025-01-28 22:49:41 -0300
+Última atualização 2025-01-28 22:11:47 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
